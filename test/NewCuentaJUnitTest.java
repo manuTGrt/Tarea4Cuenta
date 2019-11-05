@@ -56,6 +56,6 @@ public class NewCuentaJUnitTest {
         }catch (Exception e){
             System.out.println("Fallo al retirar: "+e.getMessage());
         }
-        assertEqual(cuenta.getSaldo(),0.0);
+        assertEquals(cuenta.getSaldo(),0.0);
     }
 }
