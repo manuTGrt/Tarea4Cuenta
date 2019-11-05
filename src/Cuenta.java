@@ -20,14 +20,16 @@ class Cuenta {
     }
     
     public double getSaldo(){
-        return 0.0;
+        return mSaldo;
     }
     
     public void ingresar(double x){
         
+        mSaldo=mSaldo+x;
     }
     
     public void retirar(double x){
         
+        mSaldo=mSaldo-x;
     }
 }

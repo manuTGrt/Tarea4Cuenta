@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -18,16 +20,21 @@ public class NewCuentaJUnitTest {
     public NewCuentaJUnitTest() {
     }
     
-    protected void setUp() throws Exception{
-        cuenta=new Cuenta("0001.0002.12.1234567890","Un Muchacho");
-    }
-    
-    @BeforeAll
+    @BeforeClass
     public static void setUpClass() {
     }
     
-    @AfterAll
+    @AfterClass
     public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() throws Exception{
+        cuenta=new Cuenta("0001.0002.12.1234567890","Un Muchacho");
+    }
+    
+    @After
+    public void tearDown() {
     }
     
     // TODO add test methods here.
@@ -39,23 +46,17 @@ public class NewCuentaJUnitTest {
     public void testIngresar_double() throws Exception{
         System.out.println("ingresar");
         double x=1000.0;
-        try{
-            cuenta.ingresar(x);
-            assertTrue(cuenta.getSaldo()==1000.0);
-        }catch (Exception e){
-            System.out.println("Fallo al insertar: "+e.getMessage());
-        }
+        cuenta.ingresar(x);
+        assertTrue(cuenta.getSaldo()==1000.0);
+        
     }
+    
     @Test
     public void testRetirar_double() throws Exception{
         System.out.println("Retirar");
         double x=1000.0;
-        try{
-            cuenta.retirar(x);
-            assertTrue(cuenta.getSaldo()==0);
-        }catch (Exception e){
-            System.out.println("Fallo al retirar: "+e.getMessage());
-        }
-        assertEquals(cuenta.getSaldo(),0.0);
+        cuenta.retirar(x);
+        assertTrue(cuenta.getSaldo()==-1000.0);
+        
     }
 }
